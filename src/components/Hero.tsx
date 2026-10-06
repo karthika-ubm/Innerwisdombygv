@@ -4,7 +4,6 @@ import { getSessionDisplay } from "@/lib/next-session";
 
 export default function Hero() {
     const session = getSessionDisplay();
-    const razorpayLink = process.env.NEXT_PUBLIC_RAZORPAY_PAYMENT_LINK;
   return (
     <section className="relative overflow-hidden py-14 lg:py-20">
       
@@ -78,7 +77,7 @@ export default function Hero() {
             {/* CTA */}
             <div>
               <a
-                href={razorpayLink}
+               href={process.env.NEXT_PUBLIC_RAZORPAY_PAYMENT_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-coffee hover:bg-space-cadet text-cream font-semibold px-9 py-3.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"

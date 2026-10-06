@@ -63,7 +63,7 @@ export default function About() {
 
             <div className="pt-2">
               <a
-                href="#register"
+                 href={process.env.NEXT_PUBLIC_RAZORPAY_PAYMENT_LINK}
                 className="inline-block bg-coffee text-cream px-8 py-3.5 rounded-full font-medium hover:bg-space-cadet transition"
               >
                 Join the Next Session
