@@ -85,7 +85,7 @@ export default function WhoIsThisFor() {
             Maybe you just need a new way of looking at the one you already have.
           </p>
           <a
-            href="https://rzp.io/rzp/hvbBq2W"
+         href={process.env.NEXT_PUBLIC_RAZORPAY_PAYMENT_LINK}
             className="inline-flex items-center gap-2 bg-tan hover:bg-cream text-space-cadet font-semibold px-10 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             Start Your Journey

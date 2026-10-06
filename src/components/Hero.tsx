@@ -1,7 +1,10 @@
 import Image from "next/image";
 import CountdownTimer from "./CountdownTimer";
+import { getSessionDisplay } from "@/lib/next-session";
 
 export default function Hero() {
+    const session = getSessionDisplay();
+    const razorpayLink = process.env.NEXT_PUBLIC_RAZORPAY_PAYMENT_LINK;
   return (
     <section className="relative overflow-hidden py-14 lg:py-20">
       
@@ -29,15 +32,8 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           
           {/* Left Content */}
-          <div className="space-y-7">
+           <div className="space-y-7">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                {/* <div className="h-px w-8 bg-coffee"></div> */}
-                {/* <span className="text-xs font-semibold tracking-[0.2em] uppercase text-coffee">
-                  Free Live Masterclass
-                </span> */}
-              </div>
-              
               <h1 className="text-4xl sm:text-5xl lg:text-[3.3rem] font-serif font-bold text-space-cadet leading-[1.15]">
                 Unlock Your{" "}
                 <span className="text-coffee">Inner Wisdom</span>
@@ -49,13 +45,13 @@ export default function Hero() {
               </p>
             </div>
 
-            {/* Info Cards */}
+            {/* Info Cards - Now dynamic */}
             <div className="grid grid-cols-2 gap-3">
               {[
-                { label: "Date", value: "17 Oct 2026" },
-                { label: "Time", value: "11:00 PM IST" },
-                { label: "Language", value: "English + Hindi" },
-                { label: "Duration", value: "2 Hours" },
+                { label: "Date", value: session.date },
+                { label: "Time", value: session.time },
+                { label: "Language", value: session.language },
+                { label: "Duration", value: session.duration },
               ].map((item) => (
                 <div
                   key={item.label}
@@ -82,7 +78,7 @@ export default function Hero() {
             {/* CTA */}
             <div>
               <a
-                href="https://rzp.io/rzp/hvbBq2W"
+                href={razorpayLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-coffee hover:bg-space-cadet text-cream font-semibold px-9 py-3.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
@@ -128,3 +124,4 @@ export default function Hero() {
     </section>
   );
 }
+

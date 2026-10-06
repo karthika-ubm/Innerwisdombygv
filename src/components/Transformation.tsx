@@ -80,7 +80,7 @@ export default function Transformation() {
           
           <div className="mt-10">
             <a
-              href="https://rzp.io/rzp/hvbBq2W"
+             href={process.env.NEXT_PUBLIC_RAZORPAY_PAYMENT_LINK}
               className="inline-flex items-center gap-2 bg-coffee hover:bg-space-cadet text-cream font-semibold px-8 py-3.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg"
             >
               Start Your Transformation

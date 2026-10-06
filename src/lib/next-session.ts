@@ -1,13 +1,40 @@
-import { addWeeks, isBefore, startOfDay } from "date-fns";
+import { addWeeks, isBefore, format } from "date-fns";
 
-export const FIRST_SESSION = new Date("2026-10-15T19:00:00+05:30"); // 15 Oct 2026, 7:00 PM IST
+// ============================================
+// 🔧 CHANGE ONLY THESE VALUES WHEN NEEDED
+// ============================================
+export const SESSION_CONFIG = {
+  // First session date & time (IST)
+  firstSession: new Date("2026-10-17T23:00:00+05:30"), // 17 Oct 2026, 11:00 PM IST
+
+  // How often the session repeats
+  repeatEveryWeeks: 2,
+
+  // Display values (these will be shown in the UI)
+  duration: "2 Hours",
+  language: "English + Hindi",
+};
+// ============================================
 
 export function getNextSessionDate(): Date {
-  let next = new Date(FIRST_SESSION);
+  let next = new Date(SESSION_CONFIG.firstSession);
   const now = new Date();
 
   while (isBefore(next, now)) {
-    next = addWeeks(next, 2);
+    next = addWeeks(next, SESSION_CONFIG.repeatEveryWeeks);
   }
+
   return next;
+}
+
+// Formatted values for the UI
+export function getSessionDisplay() {
+  const next = getNextSessionDate();
+
+  return {
+    date: format(next, "d MMM yyyy"),          // e.g. 17 Oct 2026
+    time: format(next, "h:mm a") + " IST",     // e.g. 11:00 PM IST
+    duration: SESSION_CONFIG.duration,
+    language: SESSION_CONFIG.language,
+  };
 }
